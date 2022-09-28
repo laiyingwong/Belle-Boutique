@@ -107,18 +107,16 @@ const Slider = () => {
         <Wrapper slideIndex={slideIndex}>
           {sliderItems.map((item) => {
             return (
-              <div key={item.id}>
-                <Slide bg={item.bg}>
-                  <ImgContainer>
-                    <Image src={item.img} />
-                  </ImgContainer>
-                  <InfoContainer>
-                    <Title>{item.title}</Title>
-                    <Description>{item.description}</Description>
-                    <Button>SHOP NOW</Button>
-                  </InfoContainer>
-                </Slide>
-              </div>
+              <Slide bg={item.bg} key={item.id}>
+                <ImgContainer>
+                  <Image src={item.img} />
+                </ImgContainer>
+                <InfoContainer>
+                  <Title>{item.title}</Title>
+                  <Description>{item.description}</Description>
+                  <Button>SHOP NOW</Button>
+                </InfoContainer>
+              </Slide>
             );
           })}
         </Wrapper>
