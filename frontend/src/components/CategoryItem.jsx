@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { mobile } from '../responsive';
 
 const Container = styled.div`
   flex: 1;
@@ -13,6 +14,7 @@ const Image = styled.img`
   height: 100%;
   // cover: the image keeps its aspect ratio and fills the given dimension. The image will be clipped to fit
   object-fit: cover;
+  ${mobile({ height: '45vh' })};
 `;
 
 const Info = styled.div`
