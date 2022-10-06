@@ -1,0 +1,56 @@
+const router = require('express').Router();
+const User = require('../models/User');
+const CryptoJS = require('crypto-js');
+
+// REGISTER
+router.post('/register', async (req, res) => {
+  const newUser = new User({
+    username: req.body.username,
+    email: req.body.email,
+    password: CryptoJS.AES.encrypt(
+      req.body.password,
+      process.env.PASS_SECRET
+    ).toString(),
+  });
+
+  try {
+    const savedUser = await newUser.save();
+    res.status(201).json(savedUser);
+  } catch (err) {
+    res.statis(500).json(err);
+  }
+});
+
+//LOGIN
+
+router.post('/login', async (req, res) => {
+  try {
+    const user = await User.findOne({
+      userName: req.body.user_name,
+    });
+
+    // if no user is found send error maeesge
+    !user && res.status(401).json('Wrong User Name');
+
+    // decrypt the original password
+    const hashedPassword = CryptoJS.AES.decrypt(
+      user.password,
+      process.env.PASS_SECRET
+    );
+
+    const originalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
+
+    const inputPassword = req.body.password;
+
+    // check to see if the original password matches the input password
+    originalPassword != inputPassword && res.status(401).json('Wrong Password');
+
+    // destructure the user object (MongoDB saves the info in `_doc` collection) to single out the password so that we can send everything BUT the password
+    const { password, ...others } = user._doc;
+    res.status(200).json(others);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+module.exports = router;
