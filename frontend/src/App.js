@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import ProductList from './pages/ProductList';
 import Product from './pages/Product';
@@ -6,15 +7,19 @@ import Login from './pages/Login';
 import Cart from './pages/Cart';
 
 function App() {
+  const user = true;
+
   return (
-    <div className="App">
-      <Home />
-      {/* <ProductList /> */}
-      {/* <Product /> */}
-      {/* <Register /> */}
-      {/* <Login /> */}
-      {/* <Cart /> */}
-    </div>
+    <Router>
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route path="/products/:category" element={<ProductList />} />
+        <Route path="/product/:id" element={<Product />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/login" element={user ? <Home /> : <Login />} />
+        <Route path="/register" element={user ? <Home /> : <Register />} />
+      </Routes>
+    </Router>
   );
 }
 
