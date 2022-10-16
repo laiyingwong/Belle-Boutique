@@ -12,3 +12,10 @@ export const userRequest = axios.create({
   baseURL: BASE_URL,
   header: { token: `Bearer ${TOKEN}` },
 });
+
+export const stripeRequest = axios.create({
+  baseURL: BASE_URL,
+  header: {
+    Authorization: `Bearer ${process.env.REACT_APP_STRIPE_SECRET}`,
+  },
+});

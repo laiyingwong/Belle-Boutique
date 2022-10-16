@@ -5,6 +5,7 @@ import Product from './pages/Product';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Cart from './pages/Cart';
+import Success from './pages/Success';
 
 function App() {
   const user = true;
@@ -18,6 +19,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={user ? <Home /> : <Login />} />
         <Route path="/register" element={user ? <Home /> : <Register />} />
+        <Route path="/success" element={user ? <Home /> : <Success />} />
       </Routes>
     </Router>
   );
