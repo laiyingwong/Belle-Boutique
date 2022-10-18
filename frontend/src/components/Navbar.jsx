@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Container = styled.div`
+  background-image: linear-gradient(to right, #cbe1ef, #c5e1ef);
+  /* background-color: #ede8e1; */
   height: 60px;
   ${mobile({ height: '50px' })};
 `;
@@ -24,25 +26,21 @@ const Left = styled.div`
   align-items: center;
 `;
 
-const SearchContainer = styled.div`
-  border: 0.5px solid lightgray;
-  display: flex;
-  align-items: center;
-  padding: 5px;
-`;
-
-const Input = styled.input`
-  border: none;
-  ${mobile({ width: '50px' })};
-`;
-
 const Center = styled.div`
   flex: 1;
   text-align: center;
 `;
 
 const Logo = styled.h1`
-  font-weight: bold;
+  font-family: 'Playfair Display SC', serif;
+  font-size: 35px;
+  color: #3c5067;
+  letter-spacing: 2px;
+  font-weight: bolder;
+  text-decoration: none;
+  &:hover {
+    color: #fcfef6;
+  }
   ${mobile({ fontSize: '16px' })};
 `;
 
@@ -51,13 +49,18 @@ const Right = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  text-decoration: none;
   ${mobile({ flex: 2, justifyContent: 'center' })};
 `;
 
 const MenuItem = styled.div`
-  font-size: 14px;
+  color: #3c5067;
+  font-size: 20px;
   cursor: pointer;
   margin-left: 25px;
+  &:hover {
+    color: #fcfef6;
+  }
   ${mobile({ fontSize: '12px', marginLeft: '10px' })};
 `;
 
@@ -71,17 +74,25 @@ const Navbar = () => {
       <Container>
         <Wrapper>
           <Left>
-            <SearchContainer>
-              <Input />
-              <Search style={{ color: 'gray', fontSize: '16px' }} />
-            </SearchContainer>
+            <Link to="/" style={{ textDecoration: 'none' }}>
+              <MenuItem>Homepage</MenuItem>
+            </Link>
+            <Link to="/products" style={{ textDecoration: 'none' }}>
+              <MenuItem>Products</MenuItem>
+            </Link>
           </Left>
           <Center>
-            <Logo>Belle Boutique</Logo>
+            <Link to="/" style={{ textDecoration: 'none' }}>
+              <Logo>BELLE BOUTIQUE</Logo>
+            </Link>
           </Center>
           <Right>
-            <MenuItem>Sign Up</MenuItem>
-            <MenuItem>Log In</MenuItem>
+            <Link to="/register" style={{ textDecoration: 'none' }}>
+              <MenuItem>Sign Up</MenuItem>
+            </Link>
+            <Link to="/login" style={{ textDecoration: 'none' }}>
+              <MenuItem>Log In</MenuItem>
+            </Link>
             <Link to="/cart">
               <MenuItem>
                 <Badge badgeContent={quantity} color="primary">

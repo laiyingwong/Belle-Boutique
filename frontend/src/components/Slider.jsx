@@ -6,7 +6,7 @@ import { mobile } from '../responsive';
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 70vh;
   display: flex;
   position: relative;
   overflow: hidden;
@@ -50,7 +50,7 @@ const Slide = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: ${(props) => props.bg};
+  background-color: #cbe1ef;
 `;
 
 const ImgContainer = styled.div`
@@ -64,6 +64,7 @@ const Image = styled.img`
 `;
 
 const InfoContainer = styled.div`
+  color: #fcfef6;
   flex: 1;
   padding: 50px;
 `;
@@ -74,17 +75,23 @@ const Title = styled.h1`
 
 const Description = styled.p`
   margin: 50px 0;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 500;
   letter-spacing: 3px;
 `;
 
 const Button = styled.button`
+  color: #3c5067;
   padding: 10px;
   font-size: 20px;
   background-color: transparent;
   cursor: pointer;
   border-style: solid;
+  border-color: #3c5067;
+  &:hover {
+    color: #fcfef6;
+    border-color: #fcfef6;
+  }
 `;
 
 const Slider = () => {
@@ -116,7 +123,7 @@ const Slider = () => {
                 <InfoContainer>
                   <Title>{item.title}</Title>
                   <Description>{item.description}</Description>
-                  <Button>SHOP NOW</Button>
+                  <Button>{item.btnName}</Button>
                 </InfoContainer>
               </Slide>
             );
